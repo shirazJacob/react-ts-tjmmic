@@ -1,13 +1,19 @@
 import * as React from 'react';
 import { useState } from 'react';
 
-const SendMessageForm = ({ addMessage }) => {
+const SendMessageForm = ({ addMessage, userTypingHandle }) => {
   const [message, setMessage] = useState('');
 
   const addNewMessage = () => {
     console.log(message);
     setMessage('');
+    userTypingHandle('');
     addMessage(message);
+  };
+
+  const handleChange = (e) => {
+    setMessage(e.target.value);
+    userTypingHandle(e.target.value);
   };
   return (
     <div
@@ -21,7 +27,7 @@ const SendMessageForm = ({ addMessage }) => {
         style={{ borderRadius: 10, padding: 20, width: '60%' }}
         value={message}
         placeholder="write something..."
-        onChange={(e) => setMessage(e.target.value)}
+        onChange={(e) => handleChange(e)}
       ></textarea>
       <button
         style={{
