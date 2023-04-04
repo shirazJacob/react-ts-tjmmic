@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-const ChatBoxSender = ({ user, message }) => {
+const ChatBoxSender = (props: { user: string; message: string }) => {
+  const { user, message } = props;
   return (
     <div
       style={{
